@@ -1,11 +1,19 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+import FirstAnimation from "@/components/introduction/FirstAnimation.astro";
+import Layout from "../layouts/Layout.astro";
+import Easing from "@/components/introduction/Easing.astro";
+import Stagger from "@/components/introduction/Stagger.astro";
+import Timeline from "@/components/introduction/Timeline.astro";
+import Callbacks from "@/components/introduction/Callbacks.astro";
+import ScrollTrigger from "@/components/plugins/scroll/ScrollTrigger.astro";
 ---
 
 <Layout>
-	<Welcome />
+  <!-- <FirstAnimation /> -->
+  <!-- <Easing /> -->
+  <!-- <Stagger /> -->
+  <!-- <Timeline /> -->
+  <!-- <Callbacks /> -->
+
+  <ScrollTrigger />
 </Layout>

@@ -1,0 +1,70 @@
+---
+
+---
+
+<div class="flex flex-col gap-2 justify-start w-full p-6">
+  <div class="box green"></div>
+  <div class="box purple"></div>
+  <div class="box orange"></div>
+</div>
+
+<div class="flex gap-2 justify-start w-full p-6">
+  <div class="box green-a"></div>
+  <div class="box purple-a"></div>
+  <div class="box orange-a"></div>
+</div>
+
+<style>
+  .box {
+    width: 50px;
+    height: 50px;
+    border-radius: 0.25rem;
+    background-color: #3498db;
+  }
+
+  .green,
+  .green-a {
+    background-color: #2ecc71;
+  }
+
+  .purple,
+  .purple-a {
+    background-color: #9b59b6;
+  }
+
+  .orange,
+  .orange-a {
+    background-color: #e67e22;
+  }
+</style>
+
+<script>
+  import gsap from "gsap";
+
+  const tl = gsap.timeline();
+
+  tl.to(".green", { x: 300, xPercent: -100 });
+  tl.to(".purple", { x: 300, xPercent: -100, delay: 1 });
+  tl.to(".orange", { x: 300, xPercent: -100 });
+
+  tl.to(".green", { x: 0, xPercent: 0 })
+    .to(".purple", { x: 0, xPercent: 0 })
+    .to(".orange", { x: 0, xPercent: 0 });
+
+  //   tl.to(".green", { x: 300, xPercent: -100 }, 1)
+  //     .to(".purple", { x: 300, xPercent: -100 }, "<")
+  //     .to(".orange", { x: 300, xPercent: -100 }, "+=1");
+
+  const tl2 = gsap.timeline({
+    repeat: -1,
+    repeatDelay: 1,
+    yoyo: true,
+    defaults: {
+        ease: "power1.inOut",
+    },
+  });
+
+  tl2.to(".green-a", { rotation: 360 });
+  tl2.to(".purple-a", { rotation: 360 });
+  tl2.to(".orange-a", { rotation: 360 });
+</script>

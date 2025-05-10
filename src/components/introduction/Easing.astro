@@ -1,0 +1,77 @@
+---
+
+---
+
+<div class="box linear"></div>
+<div class="box bounce-out"></div>
+<div class="box power-in-out"></div>
+<div class="box back-in-out"></div>
+<div class="box circ-in-out"></div>
+<div class="box elastic-in-out"></div>
+<div class="box expo-in-out"></div>
+<div class="box steps"></div>
+<div class="box rough"></div>
+<div class="box slow"></div>
+<div class="box scale"></div>
+
+<style>
+  .box {
+    width: 50px;
+    height: 50px;
+    background-color: red;
+  }
+</style>
+
+<script>
+  import gsap from "gsap";
+  import { CustomEase } from "gsap/CustomEase";
+  import { RoughEase, ExpoScaleEase, SlowMo } from "gsap/EasePack";
+
+  gsap.registerPlugin(RoughEase, ExpoScaleEase, SlowMo, CustomEase);
+
+  gsap.to(".linear", { rotation: 360, duration: 2, ease: "linear" });
+
+  gsap.to(".bounce-out", { rotation: 360, duration: 2, ease: "bounce.out" });
+
+  gsap.to(".power-in-out", {
+    rotation: 360,
+    duration: 2,
+    ease: "power1.inOut",
+  });
+
+  gsap.to(".back-in-out", { rotation: 360, duration: 2, ease: "back.inOut" });
+
+  gsap.to(".circ-in-out", { rotation: 360, duration: 2, ease: "circ.inOut" });
+
+  gsap.to(".elastic-in-out", {
+    rotation: 360,
+    duration: 2,
+    ease: "elastic.inOut",
+  });
+
+  gsap.to(".expo-in-out", { rotation: 360, duration: 2, ease: "expo.inOut" });
+
+  gsap.to(".steps", {
+    rotation: 360,
+    duration: 2,
+    ease: "steps(24)",
+  });
+
+  gsap.to(".rough", {
+    rotation: 360,
+    duration: 2,
+    ease: `rough({ template: "none", strength: 1, points:20,taper:none,randomize:true,clamp:false })`,
+  });
+
+  gsap.to(".slow", {
+    rotation: 360,
+    duration: 2,
+    ease: `slow(0.7, 0.7, false)`,
+  });
+
+  gsap.to(".scale", {
+    rotation: 360,
+    duration: 2,
+    ease: `"expoScale(0.5,7,none)"`,
+  });
+</script>

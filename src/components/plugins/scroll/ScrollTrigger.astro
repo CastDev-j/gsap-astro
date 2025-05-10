@@ -1,0 +1,167 @@
+---
+
+---
+
+<!-- <div class="flex flex-col gap-2 justify-start w-full p-6 my-[100vh]">
+  <div class="box a">a</div>
+  <div class="flex relative">
+    <div class="box b z-10">b</div>
+    <div class="box b-s absolute z-0">b</div>
+  </div>
+  <div class="box c">c</div>
+</div> -->
+
+<style>
+  .box {
+    width: 100px;
+    height: 100px;
+    background-color: #4a90e2;
+    border-radius: 10px;
+    color: #171717;
+    font-size: 3em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+  }
+
+  .a {
+    background-color: #e94e77;
+  }
+
+  .b-s {
+    background-color: #f5a623;
+    opacity: 0.5;
+  }
+
+  .b {
+    background-color: #f5a623;
+  }
+
+  .c {
+    background-color: #7ed321;
+  }
+</style>
+
+<script>
+  import gsap from "gsap";
+  import { ScrollTrigger } from "gsap/all";
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  const tl = gsap.timeline({
+    scrollTrigger: {
+      trigger: ".a",
+      endTrigger: ".c",
+      // "1 2 3 4", 'play', "pause", "resume", "reverse", "restart", "none"
+      // 1 es cuando entra el viewport desde la parte superior
+      // 2 es cuando entra el viewport desde la parte inferior
+      // 3 es cuando sale el viewport por la parte superior
+      // 4 es cuando sale el viewport por la parte inferior
+      toggleActions: "play pause reverse pause",
+      start: "100% 50%",
+      end: "0% 50%",
+      // markers: true,
+      scrub: 3,
+      pin: ".b",
+    },
+  });
+
+  tl.to(".b", {
+    x: "70vw",
+    rotate: 360,
+    duration: 3,
+  });
+</script>
+
+<div class="">
+  <div
+    class="min-h-screen w-full bg-neutral-800 flex flex-col gap-6 justify-center items-center px-12 z-10"
+  >
+    <h1
+      class="text-5xl
+    font-bold
+    text-neutral-100
+    text-center
+    bg-gradient-to-r
+    from-purple-500
+    to-pink-500
+    bg-clip-text"
+    >
+      Slide-in panels
+    </h1>
+
+    <p>
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Id totam nam
+      autem omnis placeat. Deserunt, ipsam ratione fuga iure earum autem
+      similique exercitationem blanditiis mollitia placeat iste qui suscipit
+      quis.
+    </p>
+  </div>
+
+  <div
+    class="slide-container flex relative w-full h-screen overflow-hidden justify-center items-center"
+  >
+    <div class="">
+      <h1>First</h1>
+    </div>
+
+    <div class="slider orange absolute z-0">
+      <h1>Second</h1>
+    </div>
+
+    <div class="slider purple absolute z-0">
+      <h1>Third</h1>
+    </div>
+
+    <div class="slider green absolute z-0">
+      <h1>Fourth</h1>
+    </div>
+  </div>
+</div>
+
+<style>
+  .slider {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .orange {
+    background-color: #e94e77;
+  }
+
+  .purple {
+    background-color: #4a90e2;
+  }
+
+  .green {
+    background-color: #7ed321;
+  }
+</style>
+
+<script>
+  import gsap from "gsap";
+  import { ScrollTrigger } from "gsap/all";
+
+  gsap.registerPlugin(ScrollTrigger);
+  gsap.defaults({ ease: "none", duration: 2 });
+
+  const tl = gsap.timeline();
+
+  tl.from(".orange", { xPercent: -100 })
+    .from(".purple", { xPercent: 100 })
+    .from(".green", { yPercent: -100 });
+
+  ScrollTrigger.create({
+    animation: tl,
+    trigger: ".slide-container",
+    pin: true,
+    scrub: 1,
+    start: "top top",
+    end: "+=4000",
+    anticipatePin: 1,
+  });
+</script>
