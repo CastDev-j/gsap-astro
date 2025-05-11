@@ -1,0 +1,39 @@
+---
+
+---
+
+<div class="flex flex-col w-full">
+  <div class="panel amber w-full bg-amber-500 h-screen z-0">1</div>
+  <div class="panel pink w-full bg-pink-500 h-screen z-10">2</div>
+  <div class="panel rose w-full bg-rose-500 h-screen z-20">3</div>
+  <div class="panel purple w-full bg-purple-500 h-screen z-30">4</div>
+</div>
+
+<style>
+  .panel {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 4rem;
+    color: white;
+  }
+</style>
+
+<script>
+  import gsap from "gsap";
+  import { ScrollTrigger } from "gsap/all";
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  const tl = gsap.timeline();
+
+  gsap.utils.toArray(".panel").forEach((panel, i) => {
+    ScrollTrigger.create({
+      trigger: panel as HTMLElement,
+      start: "top top",
+    //   end: "+=100%",
+      pin: true,
+      pinSpacing: false,
+    });
+  });
+</script>
