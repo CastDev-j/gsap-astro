@@ -1,0 +1,72 @@
+---
+
+---
+
+<style>
+  .container {
+    height: 100vh;
+    background: linear-gradient(to bottom, #f0f0f0, #e0e0e0);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .box {
+    width: 100px;
+    height: 100px;
+    background-color: #3498db;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+  }
+
+  .box p {
+    color: white;
+    font-size: 20px;
+  }
+</style>
+
+<div class="min-h-screen w-full">asd</div>
+<div class="">
+  <div class="container">
+    <div class="box">
+      <p>Scroll</p>
+    </div>
+  </div>
+</div>
+<div class="min-h-screen w-full">asd</div>
+
+<script>
+  import gsap from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  const container = document.querySelector(".container") as HTMLElement;
+
+  let tl = gsap.timeline({
+    scrollTrigger: {
+      trigger: ".container",
+      pin: true, 
+      pinSpacing: true,
+      start: "top top", 
+      end: () => `+=${container.offsetHeight}`, 
+      scrub: 1, 
+      snap: {
+        snapTo: "labels", 
+        duration: { min: 0.2, max: 3 }, 
+        delay: 0.2, 
+        ease: "power1.inOut",
+      },
+    },
+  });
+
+  tl.addLabel("start")
+    .from(".box p", { scale: 0.3, rotation: 45, autoAlpha: 0 })
+    .addLabel("color")
+    .from(".box", { backgroundColor: "#28a92b" })
+    .addLabel("spin")
+    .to(".box", { rotation: 360 })
+    .addLabel("end");
+</script>

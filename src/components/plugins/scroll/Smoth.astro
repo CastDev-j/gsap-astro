@@ -1,0 +1,148 @@
+---
+
+---
+
+<section id="smooth-wrapper" class="flex w-screen h-fit py-12">
+  <div
+    id="smooth-content"
+    class="flex flex-col items-center justify-start w-full h-fit gap-96 py-96"
+  >
+    <h1 class="title text-4xl font-semibold text-center text-white">
+      ScrollSmoother
+    </h1>
+    <div class="boxes">
+      <div class="box-p box-a">a</div>
+      <div class="box-p box-b">b</div>
+      <div class="box-p box-c">c</div>
+    </div>
+    <div class="line"></div>
+
+    <button id="scroll-button-1" class="button"> Scroll to Button 2 </button>
+    <button id="scroll-button-2" class="button"> Scroll to Button 3 </button>
+    <button id="scroll-button-3" class="button"> Scroll to Button 1 </button>
+    <button id="scroll-button-px-0" class="button"> Scroll to px 0 </button>
+  </div>
+</section>
+
+<style>
+  .boxes {
+    display: flex;
+    gap: 2rem;
+    width: 100%;
+    height: fit-content;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .box-p {
+    width: 100px;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 3rem;
+    color: #171717;
+    font-weight: 500;
+  }
+
+  .box-a {
+    background-color: #750090;
+  }
+
+  .box-b {
+    background-color: #008b00;
+  }
+
+  .box-c {
+    background-color: #c04600;
+  }
+
+  .line {
+    width: 100%;
+    height: 2px;
+    background-color: #fff;
+  }
+
+  .button {
+    width: 200px;
+    height: 50px;
+    background-color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: #171717;
+    margin-top: 2rem;
+    transition:
+      background-color 0.3s ease,
+      transform 0.3s ease;
+  }
+</style>
+
+<script>
+  import gsap from "gsap";
+  import { ScrollTrigger, ScrollSmoother } from "gsap/all";
+
+  gsap.registerPlugin(ScrollTrigger);
+  gsap.registerPlugin(ScrollSmoother);
+
+  const scrollButton1 = document.getElementById(
+    "scroll-button-1"
+  ) as HTMLButtonElement;
+  const scrollButton2 = document.getElementById(
+    "scroll-button-2"
+  ) as HTMLButtonElement;
+  const scrollButton3 = document.getElementById(
+    "scroll-button-3"
+  ) as HTMLButtonElement;
+  const scrollButtonPxZero = document.getElementById(
+    "scroll-button-px-0"
+  ) as HTMLButtonElement;
+
+  const smoother = ScrollSmoother.create({
+    smooth: 1,
+    effects: true,
+  });
+
+  smoother.effects(".box", {
+    speed: 0.5,
+    // lag: (i) => i * 0.5,
+  });
+
+  scrollButton1.addEventListener("click", () => {
+    gsap.to(smoother, {
+      scrollTop: smoother.offset("#scroll-button-2", "center center"),
+      duration: 2,
+      ease: "power2.inOut",
+    });
+  });
+
+  scrollButton2.addEventListener("click", () => {
+    smoother.scrollTo("#scroll-button-3", true, "center center");
+  });
+
+  scrollButton3.addEventListener("click", () => {
+    smoother.scrollTo("#scroll-button-1", true, "center center");
+  });
+
+  scrollButtonPxZero.addEventListener("click", () => {
+    smoother.scrollTo(0, true, "center center");
+  });
+
+  gsap.to(".box-c", {
+    rotation: 360,
+    scrollTrigger: {
+      trigger: ".box-c",
+      start: "center center",
+      scrub: true,
+    },
+  });
+
+  ScrollTrigger.create({
+    pin: ".box-a",
+    start: "top center",
+    end: "+=300",
+    markers: true,
+  });
+</script>

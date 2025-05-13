@@ -1,0 +1,68 @@
+<!-- Wrapper para ScrollSmoother -->
+<div id="smooth-wrapper">
+  <div id="content" class="grid grid-cols-12 gap-8 py-52 p-6">
+    <!-- Imagen 1 - Ocupa 8 columnas -->
+    <div class="relative overflow-hidden col-span-10 col-start-1 h-[80vh]">
+      <img
+        src="https://images.pexels.com/photos/842711/pexels-photo-842711.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&dpr=2"
+        alt="1"
+        class="w-auto h-[100vh] object-cover"
+      />
+    </div>
+
+    <!-- Imagen 2 - Ocupa 4 columnas -->
+    <div class="relative overflow-hidden col-span-11 col-start-2 h-[80vh]">
+      <img
+        src="https://images.pexels.com/photos/1525041/pexels-photo-1525041.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&dpr=2"
+        alt="2"
+        class="w-auto h-[100vh] object-cover"
+      />
+    </div>
+
+    <!-- Imagen 3 - Ocupa 4 columnas -->
+    <div class="relative overflow-hidden col-span-12 h-[60vh]">
+      <img
+        src="https://images.pexels.com/photos/1379636/pexels-photo-1379636.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&dpr=2"
+        alt="3"
+        class="w-auto h-[100vh] object-cover"
+      />
+    </div>
+
+    <!-- Imagen 4 - Ocupa 4 columnas -->
+    <div class="relative overflow-hidden col-span-11 h-[60vh]">
+      <img
+        src="https://images.pexels.com/photos/3791466/pexels-photo-3791466.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&dpr=2"
+        alt="4"
+        class="w-auto h-[100vh] object-cover"
+      />
+    </div>
+
+    <!-- Imagen 5 - Ocupa 4 columnas -->
+    <div class="relative overflow-hidden col-span-11 col-start-2 h-[60vh]">
+      <img
+        src="https://images.pexels.com/photos/1643409/pexels-photo-1643409.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&dpr=2"
+        alt="5"
+        class="w-auto h-[100vh] object-cover"
+      />
+    </div>
+  </div>
+</div>
+
+<!-- Parallax Script -->
+<script>
+  import { gsap } from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+  import { ScrollSmoother } from "gsap/ScrollSmoother";
+  gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
+
+  const smoother = ScrollSmoother.create({
+    content: "#content",
+    smooth: 3,
+    effects: true,
+  });
+
+  // Aplicar efecto parallax más pronunciado
+  smoother.effects("img", {
+    speed: "auto",
+  });
+</script>

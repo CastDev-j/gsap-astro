@@ -1,0 +1,76 @@
+---
+
+---
+
+<div class="container flex flex-col gap-96 my-96 p-6">
+  <div class="box a">A</div>
+  <div class="box b">B</div>
+  <div class="box c">C</div>
+</div>
+
+<style>
+  .box {
+    width: 100px;
+    height: 100px;
+    background-color: #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    border-radius: 8px;
+    color: white;
+
+    transition: background-color 0.3s ease;
+  }
+
+  .a {
+    background-color: #300000;
+  }
+
+  .b {
+    background-color: #003100;
+  }
+
+  .c {
+    background-color: #000031;
+  }
+
+  .b.active {
+    background-color: #ff0000;
+    
+  }
+</style>
+
+<script>
+  import gsap from "gsap";
+  import { ScrollTrigger } from "gsap/all";
+
+
+  ScrollTrigger.defaults({
+    markers: true,
+    toggleActions: "restart pause resume none",
+  });
+
+  gsap.registerPlugin(ScrollTrigger);
+
+
+  ScrollTrigger.create({
+    // scroller: ".container",
+    // horizontal: true,
+    id: "b-element",
+    trigger: ".b",
+    start: "top 80%",
+    end: "bottom 20%",
+    // markers: false,
+    onEnter: () => console.log("onEnter"),
+    onLeave: () => console.log("onLeave"),
+    onEnterBack: () => console.log("onEnterBack"),
+    onLeaveBack: () => console.log("onLeaveBack"),
+    // onUpdate: (self) => console.log("onUpdate", self.progress.toFixed(3)),
+    onToggle: (self) => console.log("onToggle", self.isActive),
+    toggleClass: "active",
+  });
+
+  const trigger = ScrollTrigger.getById("b-element");
+
+</script>
